@@ -31,16 +31,16 @@ type equalBeat = {
 type line = {
   countryCode: number; areaCode: number; zipCode: number; id: number; info?: string;
   number: number;
-  type: "mobile" | "land" | "statelital";
+  type: "mobile" | "land" | "statelital" | "fax";
 };
 
 class IAE implements IndividualAnimaEntity
 {
 
-  constructor ( { equalBeat, line, id, author = "Juan Camilo", pleasures, guilts, burnOut = 0 }: { pleasures: string[], guilts: string[]; equalBeat?: equalBeat; line?: line; id: number; author: string; } )
+  constructor ( { equalBeat, line, id, author = "Juan Camilo", pleasures, guilts, burnOut = 0 }: { pleasures: string[], guilts: string[]; equalBeat?: equalBeat; line: line; id: number; author: string; } )
   {
     this.equalBeat = equalBeat ? equalBeat : null;
-    this.line = line ? line : null;
+    this.line =  line ;
     this.id = id;
     this.author = author;
     this.guilts = [ ...guilts ];
@@ -50,7 +50,7 @@ class IAE implements IndividualAnimaEntity
   guilts: string[];
   pleasures: string[];
   id: number;
-  line: line | null;
+  line: line ;
   equalBeat: equalBeat | null;
   author: string;
   burnOut: number;

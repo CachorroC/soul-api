@@ -5,8 +5,44 @@ const router = Router();
 
 
 const books: IAE[] = [
-  { id: 1, guilt: "1984", author: "George Orwell" },
-  { id: 2, guilt: "Brave New World", author: "Aldous Huxley" }
+  {
+    id: 1, guilts: [ "1984" ], author: "George Orwell",
+    pleasures: [
+      "gloryhole", "cum"
+    ],
+    line: {
+      countryCode: 57,
+      areaCode: 301,
+      zipCode: 111321,
+      id: 1032488516,
+      number: 3017990512,
+      type: 'mobile'
+    },
+    equalBeat: {
+
+    },
+    burnOut: 0,
+    stage: 0,
+    name: '',
+    matchedCopters: []
+  },
+  {
+    id: 2, guilts: [ "Brave New World" ], author: "Aldous Huxley",
+    pleasures: ["wawa", "caps"],
+    line:{
+      countryCode: 1,
+      areaCode: 601,
+      zipCode: 78956,
+      id: 244007658,
+      number: 6012749438,
+      type: 'land'
+    },
+    equalBeat: null,
+    burnOut: 0,
+    stage: 0,
+    name: '',
+    matchedCopters: []
+  }
 ];
 
 // Get all books
@@ -27,11 +63,8 @@ router.get("/books/:id", (req: Request, res: Response) => {
 
 // Create a new book
 router.post("/books", (req: Request, res: Response) => {
-  const newBook: Book = {
-    id: books.length + 1,
-    title: req.body.title,
-    author: req.body.author
-  };
+
+  const newBook: IAE = req.body as IAE;
   books.push(newBook);
   res.status(201).json(newBook);
 });
@@ -42,7 +75,8 @@ router.put("/books/:id", (req: Request, res: Response) => {
   const bookIndex = books.findIndex(b => b.id === bookId);
 
   if (bookIndex !== -1) {
-    books[bookIndex] = { id: bookId, title: req.body.title, author: req.body.author };
+    const newBook = req.body
+    books[bookIndex] = { id: bookId, ...newBook };
     res.json(books[bookIndex]);
   } else {
     res.status(404).json({ message: "Book not found" });
