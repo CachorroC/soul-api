@@ -1,7 +1,6 @@
 {
-  "name": "api",
+  "name": "soul-api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +10,7 @@
     "serve": "node dist/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan Camilo Suárez Ramirez",
   "dependencies": {
     "@eslint/js": "^9.20.0",
     "@types/node": "^22.13.4",
